@@ -15,6 +15,7 @@ const Contact = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
 
     emailjs
       .sendForm(
@@ -27,6 +28,7 @@ const Contact = () => {
         (result) => {
           console.log(result.text);
           setDone(true);
+          event.target.reset();
         },
         (error) => {
           console.log(error.text);
@@ -60,12 +62,36 @@ const Contact = () => {
             freelancing if the right project comes along. me.
           </p>
           <form ref={formRef} onSubmit={handleSubmit}>
-            <input style={{backgroundColor: darkMode && "#333"}} type="text" placeholder="Name" name="user_name" />
-            <input style={{backgroundColor: darkMode && "#333"}} type="text" placeholder="Subject" name="user_subject" />
-            <input  style={{backgroundColor: darkMode && "#333"}} type="text" placeholder="Email" name="user_email" />
-            <textarea style={{backgroundColor: darkMode && "#333"}} rows="5" placeholder="Message" name="message" />
+            <input
+              style={{ backgroundColor: darkMode && "#333" }}
+              type="text"
+              placeholder="Name"
+              name="user_name"
+              required
+            />
+            <input
+              style={{ backgroundColor: darkMode && "#333" }}
+              type="text"
+              placeholder="Subject"
+              name="user_subject"
+              required
+            />
+            <input
+              style={{ backgroundColor: darkMode && "#333" }}
+              type="text"
+              placeholder="Email"
+              name="user_email"
+              required
+            />
+            <textarea
+              style={{ backgroundColor: darkMode && "#333" }}
+              rows="5"
+              placeholder="Message"
+              name="message"
+              required
+            />
             <button>Submit</button>
-            { done && <span>Thanks, I will revert ASAP :)</span>}
+            {done && <span>Thanks, I will revert ASAP :)</span>}
           </form>
         </div>
       </div>
